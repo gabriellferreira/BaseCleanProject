@@ -1,8 +1,16 @@
+import br.com.gabrielferreira.baseclean.buildconfig.buildtype.BuildTypeConfig
+import br.com.gabrielferreira.baseclean.buildconfig.buildtype.DebugBuildTypeConfig
+import br.com.gabrielferreira.baseclean.buildconfig.buildtype.ReleaseBuildTypeConfig
+import br.com.gabrielferreira.baseclean.buildconfig.productflavor.DevelopmentEnvironmentProductFlavor
+import br.com.gabrielferreira.baseclean.buildconfig.productflavor.MinSdk21ProductFlavor
+import br.com.gabrielferreira.baseclean.buildconfig.productflavor.ProductFlavorConfig
+import br.com.gabrielferreira.baseclean.buildconfig.productflavor.ProductionEnvironmentProductFlavor
+import com.android.build.gradle.internal.dsl.BaseFlavor
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -12,19 +20,18 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
-        multiDexEnabled true
         minSdkVersion 21
     }
     buildTypes {
         debug {
             buildType ->
                 ext.enableCrashlytics = false
-//                setupBuildTypeConfig buildType, new DebugBuildTypeConfig()
+                setupBuildTypeConfig buildType, new DebugBuildTypeConfig()
 //                signingConfig signingConfigs.debug
         }
         release {
             buildType ->
-//                setupBuildTypeConfig buildType, new ReleaseBuildTypeConfig()
+                setupBuildTypeConfig buildType, new ReleaseBuildTypeConfig()
 //                signingConfig signingConfigs.release
         }
     }
@@ -35,17 +42,17 @@ android {
     productFlavors {
         minSdk21 { flavor ->
             dimension "minSdkVersion"
-//            setupProductFlavorConfig flavor, new MinSdk21ProductFlavor(), rootProject
+            setupProductFlavorConfig flavor, new MinSdk21ProductFlavor(), rootProject
         }
 
         development { flavor ->
             dimension "environment"
-//            setupProductFlavorConfig flavor, new DevelopmentEnvironmentProductFlavor(), rootProject
+            setupProductFlavorConfig flavor, new DevelopmentEnvironmentProductFlavor(), rootProject
         }
 
         production { flavor ->
             dimension "environment"
-//            setupProductFlavorConfig flavor, new ProductionEnvironmentProductFlavor(), rootProject
+            setupProductFlavorConfig flavor, new ProductionEnvironmentProductFlavor(), rootProject
         }
     }
 
@@ -62,11 +69,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // Support Library
-    def supportLibraryVersion = "27.1.0"
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:support-v4:$supportLibraryVersion"
-    implementation "com.android.support:support-media-compat:$supportLibraryVersion"
-    implementation("com.android.support:design:$supportLibraryVersion") {
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:support-media-compat:$rootProject.ext.supportLibraryVersion"
+    implementation("com.android.support:design:$rootProject.ext.supportLibraryVersion") {
         exclude module: 'support-v4'
     }
 
@@ -78,9 +84,6 @@ dependencies {
     // RxJava
     implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-
-    // Multidex
-    implementation 'com.android.support:multidex:1.0.3'
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.6.1'
@@ -96,6 +99,41 @@ dependencies {
     }
     kapt "com.github.hotchemi:permissionsdispatcher-processor:${permissionDispatcherVersion}"
 
-    // Fabric
-    api('com.crashlytics.sdk.android:crashlytics:2.9.1@aar')
+    //Fabric
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+        exclude group: "com.android.support", module: "support-annotations"
+    }
+}
+
+static void setupBuildTypeConfig(com.android.build.gradle.internal.dsl.BuildType buildType, BuildTypeConfig buildTypeConfig) {
+    buildType.minifyEnabled buildTypeConfig.isMinifyEnabled()
+    buildType.shrinkResources buildTypeConfig.isShrinkResourcesEnabled()
+    buildTypeConfig.proguardFiles.each { file -> buildType.proguardFile(file) }
+}
+
+@SuppressWarnings("GroovyUnusedAssignment")
+static void setupProductFlavorConfig(BaseFlavor flavor, ProductFlavorConfig config, Project project) {
+    def TYPE_BOOLEAN = "boolean"
+    def TYPE_BOOLEAN_TRUE = "true"
+    def IS_OK_HTTP_LOG_ENABLED = "IS_OK_HTTP_LOG_ENABLED"
+    def IS_EVENT_LOG_ENABLED = "IS_EVENT_LOG_ENABLED"
+
+    project.ext.enableCrashlytics = config.isFabricEnable()
+
+    flavor.minSdkVersion = config.getMinSdkVersion()
+    flavor.buildConfigField(TYPE_BOOLEAN, IS_OK_HTTP_LOG_ENABLED, config?.isOkHttpLogEnabled() ?: TYPE_BOOLEAN_TRUE)
+    flavor.buildConfigField(TYPE_BOOLEAN, IS_EVENT_LOG_ENABLED, config?.isEventLogEnabled() ?: TYPE_BOOLEAN_TRUE)
+}
+
+tasks.whenTaskAdded { task ->
+    if (detektCheckTaskShouldRunBeforeTask(task.name)) {
+        task.dependsOn rootProject.getTasksByName("detektCheck", false).first()
+    }
+}
+
+boolean detektCheckTaskShouldRunBeforeTask(final String taskName) {
+    boolean propertyExists = hasProperty("detektCheckBeforeBuildEnabled")
+    final boolean shouldRunDetektCheckBeforeBuild = propertyExists ? this.detektCheckBeforeBuildEnabled.toBoolean() : true
+    return shouldRunDetektCheckBeforeBuild && taskName.startsWith("assemble")
 }

@@ -1,4 +1,4 @@
-package br.com.gabrielferreira.baseclean.presentation.base
+package br.com.gabrielferreira.baseclean.presentation.view
 
 interface BaseContract {
 

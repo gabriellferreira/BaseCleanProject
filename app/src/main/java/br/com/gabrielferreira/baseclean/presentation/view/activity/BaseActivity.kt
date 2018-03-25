@@ -1,9 +1,9 @@
-package br.com.gabrielferreira.baseclean.presentation.base.view
+package br.com.gabrielferreira.baseclean.presentation.view.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import br.com.gabrielferreira.baseclean.presentation.base.BaseContract
+import br.com.gabrielferreira.baseclean.presentation.view.BaseContract
 
 abstract class BaseActivity<T, in V> : AppCompatActivity(), BaseContract.View where T : BaseContract.Presenter<V>, V : BaseContract.View {
 

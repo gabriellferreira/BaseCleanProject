@@ -1,7 +1,7 @@
-package br.com.gabrielferreira.baseclean.presentation.base.presenter
+package br.com.gabrielferreira.baseclean.presentation.presenter
 
 import android.support.annotation.CallSuper
-import br.com.gabrielferreira.baseclean.presentation.base.BaseContract
+import br.com.gabrielferreira.baseclean.presentation.view.BaseContract
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BasePresenter<T : BaseContract.View> : BaseContract.Presenter<T> {

@@ -1,11 +1,11 @@
-package br.com.gabrielferreira.baseclean.presentation.base.view
+package br.com.gabrielferreira.baseclean.presentation.view.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
-import br.com.gabrielferreira.baseclean.presentation.base.BaseContract
+import br.com.gabrielferreira.baseclean.presentation.view.BaseContract
 
 abstract class BaseFragment<T, in V> : Fragment(), BaseContract.View where T : BaseContract.Presenter<V>, V : BaseContract.View {
 

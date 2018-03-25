@@ -1,10 +1,11 @@
-package br.com.gabrielferreira.baseclean.presentation.splash.view
+package br.com.gabrielferreira.baseclean.presentation.view.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import br.com.gabrielferreira.baseclean.R
-import br.com.gabrielferreira.baseclean.presentation.base.view.BaseActivity
 import br.com.gabrielferreira.baseclean.presentation.internal.di.AppApplication
-import br.com.gabrielferreira.baseclean.presentation.splash.SplashContract
+import br.com.gabrielferreira.baseclean.presentation.view.SplashContract
 
 class SplashActivity : BaseActivity<SplashContract.Presenter, SplashContract.View>(),
         SplashContract.View {
@@ -14,8 +15,17 @@ class SplashActivity : BaseActivity<SplashContract.Presenter, SplashContract.Vie
         return AppApplication.applicationComponent.splashPresenter()
     }
 
+    companion object {
+        fun createIntent(context: Context) = Intent(context, SplashActivity::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        presenter?.onInitialize()
+    }
+
+    override fun redirectMain() {
+        startActivity(MainActivity.createIntent(this))
     }
 }

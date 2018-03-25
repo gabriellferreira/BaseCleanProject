@@ -1,10 +1,8 @@
 package br.com.gabrielferreira.baseclean.presentation.internal.di
 
-import android.content.Context
-import android.support.multidex.MultiDex
-import android.support.multidex.MultiDexApplication
+import android.app.Application
 
-open class AppApplication : MultiDexApplication() {
+open class AppApplication : Application() {
 
     companion object {
         lateinit var instance: AppApplication private set
@@ -15,17 +13,12 @@ open class AppApplication : MultiDexApplication() {
         instance = this
     }
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
-    }
-
     override fun onCreate() {
         super.onCreate()
-        initializeInjector()
+        initInjector()
     }
 
-    private fun initializeInjector() {
+    private fun initInjector() {
         applicationComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .build()
