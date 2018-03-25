@@ -6,6 +6,7 @@ import android.os.Bundle
 import br.com.gabrielferreira.baseclean.R
 import br.com.gabrielferreira.baseclean.presentation.internal.di.AppApplication
 import br.com.gabrielferreira.baseclean.presentation.view.MainContract
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<MainContract.Presenter, MainContract.View>(),
         MainContract.View {
@@ -22,6 +23,16 @@ class MainActivity : BaseActivity<MainContract.Presenter, MainContract.View>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        presenter?.onInitialize()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        main_news_button?.setOnClickListener {
+            presenter?.onNewsButtonClick()
+        }
+    }
+
+    override fun redirectLatestNews() {
+        startActivity(NewsActivity.createIntent(this))
     }
 }

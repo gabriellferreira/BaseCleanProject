@@ -75,6 +75,14 @@ dependencies {
         exclude module: 'support-v4'
     }
 
+    // Retrofit and OkHttp
+    def retrofitVersion = "2.3.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
+
     // Dagger
     def dagger2Version = "2.14.1"
     implementation "com.google.dagger:dagger:$dagger2Version"
