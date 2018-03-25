@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<MainContract.Presenter, MainContract.View>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setContentView(R.layout.activity_main)
         presenter?.onInitialize()
     }
 }
