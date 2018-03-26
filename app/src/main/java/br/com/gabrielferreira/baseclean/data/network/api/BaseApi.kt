@@ -19,6 +19,7 @@ open class BaseApi @Inject constructor() {
 
     fun build(timeout: Int = API_TIMEOUT): Retrofit {
 
+        //TODO extract to external buildconfig
         val baseUrl = "https://api.nytimes.com/svc/mostpopular/v2/"
 
         val builder = OkHttpClient.Builder()
