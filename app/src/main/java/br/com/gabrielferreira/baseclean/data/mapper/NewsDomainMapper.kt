@@ -7,5 +7,5 @@ import javax.inject.Inject
 class NewsDomainMapper @Inject constructor() {
 
     fun map(newsData: NewsData) =
-            News()
+            News(name = newsData.title ?: "")
 }

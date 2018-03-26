@@ -1,3 +1,18 @@
+@file:Suppress("unused")
 package br.com.gabrielferreira.baseclean.data.model
 
-class NewsData(val results: List<Any?>? = null) : BaseDataModel()
+import com.google.gson.annotations.SerializedName
+
+class NewsData(val url: String ?= null,
+               @SerializedName("count_type")
+               val countType: String? = null,
+               val column: String? = null,
+               val section: String? = null,
+               val byline: String? = null,
+               val title: String? = null,
+               val source: String? = null,
+               @SerializedName("abstract")
+               val abs: String?=null,
+               @SerializedName("published_date")
+               val publishedDate: String ?=null,
+               val mediaList: List<MediaData> ?= null) : BaseDataModel()

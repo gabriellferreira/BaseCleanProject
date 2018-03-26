@@ -4,5 +4,5 @@ import br.com.gabrielferreira.baseclean.domain.model.News
 import io.reactivex.Observable
 
 interface NewsRepository {
-    fun fetchLatestNews(): Observable<News>
+    fun fetchLatestNews(): Observable<List<News>>
 }

@@ -1,3 +1,3 @@
 package br.com.gabrielferreira.baseclean.domain.model
 
-class News : BaseDomainModel()
+class News(val name: String) : BaseDomainModel()
