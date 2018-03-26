@@ -111,6 +111,9 @@ dependencies {
         transitive = true
         exclude group: "com.android.support", module: "support-annotations"
     }
+
+    // Rounded ImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }
 
 static void setupBuildTypeConfig(com.android.build.gradle.internal.dsl.BuildType buildType, BuildTypeConfig buildTypeConfig) {

@@ -3,6 +3,7 @@ package br.com.gabrielferreira.baseclean.presentation.presenter
 import android.util.Log
 import br.com.gabrielferreira.baseclean.domain.model.News
 import br.com.gabrielferreira.baseclean.domain.usecase.NewsListUseCase
+import br.com.gabrielferreira.baseclean.presentation.mapper.NewsViewMapper
 import br.com.gabrielferreira.baseclean.presentation.model.NewsViewModel
 import br.com.gabrielferreira.baseclean.presentation.util.extension.TAG
 import br.com.gabrielferreira.baseclean.presentation.view.NewsContract
@@ -10,11 +11,11 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class NewsPresenter @Inject constructor(val latestNewsListUseCase: NewsListUseCase) :
+class NewsPresenter @Inject constructor(private val latestNewsListUseCase: NewsListUseCase,
+                                        private val newsViewMapper: NewsViewMapper) :
         BasePresenter<NewsContract.View>(), NewsContract.Presenter {
 
     override fun onInitialize() {
-        view?.bindToolbar()
         view?.initViews()
         loadLatestNews()
     }
@@ -24,9 +25,13 @@ class NewsPresenter @Inject constructor(val latestNewsListUseCase: NewsListUseCa
         view?.showLoading()
         view?.hideError()
 
+        //TODO - convert to a external observable class
         latestNewsListUseCase.fetchLatestNews("World", 1, object : Observer<List<News>> {
             override fun onComplete() {
-                Log.d(TAG, "onComplete()")
+                view?.showContent()
+                view?.hideLoading()
+                view?.hideError()
+                view?.onRefreshFinished()
             }
 
             override fun onSubscribe(d: Disposable) {
@@ -34,11 +39,14 @@ class NewsPresenter @Inject constructor(val latestNewsListUseCase: NewsListUseCa
             }
 
             override fun onNext(t: List<News>) {
-                Log.d(TAG, t.toString())
+                t.map { onNewsReceived(newsViewMapper.map(it))}
             }
 
             override fun onError(e: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                view?.hideContent()
+                view?.hideLoading()
+                view?.showError()
+                view?.onRefreshFinished()
             }
         })
     }
@@ -62,5 +70,9 @@ class NewsPresenter @Inject constructor(val latestNewsListUseCase: NewsListUseCa
 
     override fun onNewsReceived(news: NewsViewModel) {
         view?.addNews(news)
+    }
+
+    override fun onNewsClicked(news: NewsViewModel) {
+        view?.redirectWeb(news.url)
     }
 }

@@ -2,21 +2,26 @@ package br.com.gabrielferreira.baseclean.presentation.view.activity
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import br.com.gabrielferreira.baseclean.R
 import br.com.gabrielferreira.baseclean.presentation.internal.di.AppApplication
 import br.com.gabrielferreira.baseclean.presentation.model.NewsViewModel
 import br.com.gabrielferreira.baseclean.presentation.util.extension.hide
 import br.com.gabrielferreira.baseclean.presentation.util.extension.show
+import br.com.gabrielferreira.baseclean.presentation.util.view.BasePaddingItemDecoration
 import br.com.gabrielferreira.baseclean.presentation.view.NewsContract
 import br.com.gabrielferreira.baseclean.presentation.view.adapter.NewsAdapter
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_news.*
 
 class NewsActivity : BaseActivity<NewsContract.Presenter, NewsContract.View>(),
         NewsContract.View {
 
     private val newsListAdapter by lazy { NewsAdapter() }
+    private var newsClicksDisposable: Disposable? = null
 
     override fun createPresenter(): NewsContract.Presenter {
         AppApplication.applicationComponent.inject(this)
@@ -30,6 +35,7 @@ class NewsActivity : BaseActivity<NewsContract.Presenter, NewsContract.View>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
+        initToolbar(getString(R.string.news_title))
         presenter?.onInitialize()
     }
 
@@ -46,14 +52,15 @@ class NewsActivity : BaseActivity<NewsContract.Presenter, NewsContract.View>(),
     }
 
     private fun setupNewsRecycler() {
-        news_recycler?.setHasFixedSize(false)
-        news_recycler?.layoutManager = LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false)
+        news_recycler?.layoutManager = LinearLayoutManager(this)
+        resources?.let {
+            news_recycler?.addItemDecoration(BasePaddingItemDecoration(R.dimen.news_list_recycler_padding, resources, true, false))
+            news_recycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        }
         news_recycler?.adapter = newsListAdapter
-    }
-
-    override fun bindToolbar() {
-
+        newsClicksDisposable = newsListAdapter.onItemClickSubject.subscribe {
+            presenter?.onNewsClicked(it)
+        }
     }
 
     override fun addNews(news: NewsViewModel) {
@@ -88,5 +95,11 @@ class NewsActivity : BaseActivity<NewsContract.Presenter, NewsContract.View>(),
 
     override fun onRefreshFinished() {
         news_swipe?.isRefreshing = false
+    }
+
+    override fun redirectWeb(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
     }
 }

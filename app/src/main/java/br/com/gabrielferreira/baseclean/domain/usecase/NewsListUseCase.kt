@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 class NewsListUseCase @Inject constructor(private val newsRepository: NewsRepository): BaseUseCase() {
 
+    //TODO - use header parameters
     fun fetchLatestNews(section: String, timePeriod: Int, observer: Observer<List<News>>) {
         newsRepository.fetchLatestNews()
                 .subscribeOn(subscribeScheduler)

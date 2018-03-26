@@ -7,8 +7,6 @@ interface NewsContract {
     interface View : BaseContract.View {
         fun initViews()
 
-        fun bindToolbar()
-
         fun showLoading()
 
         fun hideLoading()
@@ -24,6 +22,8 @@ interface NewsContract {
         fun onRefreshFinished()
 
         fun addNews(news: NewsViewModel)
+
+        fun redirectWeb(url: String)
     }
 
     interface Presenter : BaseContract.Presenter<View> {
@@ -36,5 +36,7 @@ interface NewsContract {
         fun onLoadError()
 
         fun onNewsReceived(news: NewsViewModel)
+
+        fun onNewsClicked(news: NewsViewModel)
     }
 }

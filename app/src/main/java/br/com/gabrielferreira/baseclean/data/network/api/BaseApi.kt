@@ -13,12 +13,13 @@ open class BaseApi @Inject constructor() {
 
     companion object {
         private val API_TIMEOUT = 30
+        //TODO extract to external buildconfig
         private val API_KEY = "1a8b25f46455457f9cb14bcfefdbcbe9"
     }
 
     fun build(timeout: Int = API_TIMEOUT): Retrofit {
 
-        val baseUrl = "http://api.nytimes.com/svc/mostpopular/v2/"
+        val baseUrl = "https://api.nytimes.com/svc/mostpopular/v2/"
 
         val builder = OkHttpClient.Builder()
                 .addInterceptor(generalInterceptor())

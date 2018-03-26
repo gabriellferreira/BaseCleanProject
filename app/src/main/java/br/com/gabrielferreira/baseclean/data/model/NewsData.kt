@@ -15,4 +15,5 @@ class NewsData(val url: String ?= null,
                val abs: String?=null,
                @SerializedName("published_date")
                val publishedDate: String ?=null,
-               val mediaList: List<MediaData> ?= null) : BaseDataModel()
+               @SerializedName("media")
+               val mediaList: Any ?= null) : BaseDataModel()

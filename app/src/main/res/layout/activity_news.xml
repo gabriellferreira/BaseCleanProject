@@ -16,7 +16,9 @@
             android:id="@+id/news_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/news_toolbar" />
+            android:layout_below="@+id/news_toolbar"
+            android:padding="16dp"
+            android:clipToPadding="false"/>
 
         <FrameLayout
             android:id="@+id/news_progress"

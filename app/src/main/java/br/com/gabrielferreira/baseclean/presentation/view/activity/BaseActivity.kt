@@ -3,7 +3,10 @@ package br.com.gabrielferreira.baseclean.presentation.view.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import br.com.gabrielferreira.baseclean.presentation.util.extension.hide
+import br.com.gabrielferreira.baseclean.presentation.util.extension.show
 import br.com.gabrielferreira.baseclean.presentation.view.BaseContract
+import kotlinx.android.synthetic.main.include_toolbar.*
 
 abstract class BaseActivity<T, in V> : AppCompatActivity(), BaseContract.View where T : BaseContract.Presenter<V>, V : BaseContract.View {
 
@@ -41,5 +44,18 @@ abstract class BaseActivity<T, in V> : AppCompatActivity(), BaseContract.View wh
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    protected fun initToolbar(title: String = "") {
+        toolbar?.let {
+            if (title.isNotEmpty()) {
+                toolbar_title.show()
+                toolbar_title.text = title
+                toolbar.title = ""
+            } else {
+                toolbar_title.hide()
+                toolbar.title = ""
+            }
+        }
     }
 }
