@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface NewsService {
 
-    @GET("/mostemailed/World/7")
+    @GET("mostemailed/World/1.json")
     fun getLatestNews(): Observable<NewsData>
 }

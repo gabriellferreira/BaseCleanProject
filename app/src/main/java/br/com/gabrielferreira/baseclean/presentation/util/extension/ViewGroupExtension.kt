@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package br.com.gabrielferreira.baseclean.presentation.util.extension
 
 import android.support.annotation.LayoutRes

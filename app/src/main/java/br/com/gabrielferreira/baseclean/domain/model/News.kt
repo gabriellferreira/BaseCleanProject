@@ -1,3 +1,3 @@
 package br.com.gabrielferreira.baseclean.domain.model
 
-open class BaseDomainModel
+class News : BaseDomainModel()

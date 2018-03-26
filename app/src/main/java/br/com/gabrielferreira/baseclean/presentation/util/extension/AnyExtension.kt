@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package br.com.gabrielferreira.baseclean.presentation.util.extension
 
 fun Any.notEqualTo(any: Any?): Boolean = !equals(any)

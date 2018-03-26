@@ -1,9 +1,17 @@
+@file:Suppress("unused")
 package br.com.gabrielferreira.baseclean.presentation.util.extension
 
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.TextView
+import br.com.gabrielferreira.baseclean.presentation.util.extension.ViewExtension.Companion.SNACK_BAR_MAX_LINES
+
+class ViewExtension {
+    companion object {
+        val SNACK_BAR_MAX_LINES = 5
+    }
+}
 
 fun View.show() {
     this.visibility = View.VISIBLE
@@ -45,6 +53,6 @@ fun View.displaySnackbar(message: String) {
 
 fun View.displayLongSnackbar(@StringRes message: Int) {
     val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
-    (snackbar.view.findViewById(android.support.design.R.id.snackbar_text) as TextView?)?.maxLines = 5
+    (snackbar.view.findViewById(android.support.design.R.id.snackbar_text) as TextView?)?.maxLines = SNACK_BAR_MAX_LINES
     snackbar.show()
 }

@@ -4,14 +4,18 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class BaseApi {
+open class BaseApi @Inject constructor() {
 
-    private val API_TIMEOUT = 30
+    companion object {
+        private val API_TIMEOUT = 30
+        private val API_KEY = "1a8b25f46455457f9cb14bcfefdbcbe9"
+    }
 
-    fun build(timeout: Int = API_TIMEOUT) : Retrofit{
+    fun build(timeout: Int = API_TIMEOUT): Retrofit {
 
-        val baseUrl = ""
+        val baseUrl = "http://api.nytimes.com/svc/mostpopular/v2/"
 
         val builder = OkHttpClient.Builder()
                 .addInterceptor(generalInterceptor())
@@ -34,6 +38,7 @@ class BaseApi {
 
             val builder = original.newBuilder()
                     .header("Content-Type", "application/json")
+                    .header("api-key", API_KEY)
                     .method(original.method(), original.body())
 
             val request = builder.build()
