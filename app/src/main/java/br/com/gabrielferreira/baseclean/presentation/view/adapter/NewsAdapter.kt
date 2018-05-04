@@ -11,6 +11,7 @@ import br.com.gabrielferreira.baseclean.presentation.util.extension.inflate
 import br.com.gabrielferreira.baseclean.presentation.util.extension.loadCenterCrop
 import io.reactivex.subjects.PublishSubject
 
+@Suppress("unused")
 class NewsAdapter(private var data: MutableList<NewsViewModel> = mutableListOf())
     : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
@@ -19,8 +20,8 @@ class NewsAdapter(private var data: MutableList<NewsViewModel> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
             ViewHolder(parent.inflate(R.layout.item_news_cell))
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        holder?.bind(data[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(data[position])
     }
 
     override fun getItemCount(): Int = data.size
