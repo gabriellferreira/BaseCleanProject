@@ -28,7 +28,7 @@ abstract class BaseFragment<T, in V> : Fragment(), BaseContract.View where T : B
         safeAttachView()
     }
 
-    @Suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST", "TooGenericExceptionThrown")
     private fun safeAttachView() {
         try {
             presenter?.attachView(this as V)

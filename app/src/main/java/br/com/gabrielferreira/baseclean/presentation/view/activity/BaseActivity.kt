@@ -19,7 +19,8 @@ abstract class BaseActivity<T, in V> : AppCompatActivity(), BaseContract.View wh
 
     protected abstract fun createPresenter(): T
 
-    @Suppress("UNCHECKED_CAST")
+
+    @Suppress("UNCHECKED_CAST", "TooGenericExceptionThrown")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = this.createPresenter()

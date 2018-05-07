@@ -1,6 +1,6 @@
 buildscript {
-    ext.kotlin_version = '1.2.30'
-    ext.detektVersion = "1.0.0.RC6-3"
+    ext.kotlin_version = '1.2.41'
+    ext.detektVersion = "1.0.0.RC6-4"
 
     repositories {
         google()
@@ -12,9 +12,19 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        //noinspection GradleDynamicVersion
         classpath 'io.fabric.tools:gradle:1.+'
         classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
     }
+}
+
+plugins {
+    id "nebula.lint" version "9.3.1"
+}
+
+gradleLint {
+    rules  = ['dependency-parentheses', 'duplicate-dependency-class', 'unused-exclude-by-dep', 'unused-exclude-by-conf']
+    criticalRules = ['unused-dependency'] // <-- this will fail the build in the event of a violation
 }
 
 apply plugin: "io.gitlab.arturbosch.detekt"
@@ -35,6 +45,7 @@ allprojects {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
     }
+    apply plugin: 'nebula.lint'
 }
 
 ext {
