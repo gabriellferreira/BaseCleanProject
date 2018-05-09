@@ -10,7 +10,7 @@
 
 ## Dependencies:
 * Kotlin
-* Android Suporte
+* Android Support v4 and v7
 * Retrofit
 * Dagger2
 * RxJava
