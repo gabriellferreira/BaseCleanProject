@@ -11,9 +11,13 @@ steps:
 - restore_cache:
 key: jars-{{ checksum “build.gradle” }}-{{ checksum “app/build.gradle” }}
 
-- run: sdkmanager --install "ndk-bundle"
+- run:
+name: chmod permissions
+command: chmod +x ./gradlew
 
-- run: sdkmanager --licenses
+- run:
+name: Approve license for build tools
+command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
 - run:
 name: Run Tests
