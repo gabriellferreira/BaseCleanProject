@@ -13,18 +13,11 @@ import javax.inject.Singleton
 class AppModule(private val appApplication: AppApplication) {
 
     @Provides
-    @Singleton
     fun provideApplicationContext(): Context = appApplication
 
     @Provides
-    @Singleton
-    fun application(): AppApplication = appApplication
-
-    @Provides
-    @Singleton
     fun provideInternetConnectionVerifier(context: Context): InternetConnectionVerifier = DefaultInternetConnectionVerifier(context)
 
     @Provides
-    @Singleton
     fun provideSharedPreferences(context: Context): SharedPreferences = context.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE)
 }

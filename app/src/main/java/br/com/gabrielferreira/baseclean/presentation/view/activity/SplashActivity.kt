@@ -11,8 +11,8 @@ class SplashActivity : BaseActivity<SplashContract.Presenter, SplashContract.Vie
         SplashContract.View {
 
     override fun createPresenter(): SplashContract.Presenter {
-        AppApplication.applicationComponent.inject(this)
-        return AppApplication.applicationComponent.splashPresenter()
+        getControllerComponent().inject(this)
+        return getControllerComponent().splashPresenter()
     }
 
     companion object {

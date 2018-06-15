@@ -3,8 +3,8 @@ package br.com.gabrielferreira.baseclean.presentation.view.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.Nullable
 import br.com.gabrielferreira.baseclean.R
-import br.com.gabrielferreira.baseclean.presentation.internal.di.AppApplication
 import br.com.gabrielferreira.baseclean.presentation.view.MainContract
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -12,12 +12,13 @@ class MainActivity : BaseActivity<MainContract.Presenter, MainContract.View>(),
         MainContract.View {
 
     override fun createPresenter(): MainContract.Presenter {
-        AppApplication.applicationComponent.inject(this)
-        return AppApplication.applicationComponent.mainPresenter()
+        getControllerComponent().inject(this)
+        return getControllerComponent().mainPresenter()
     }
 
     companion object {
-        fun createIntent(context: Context) = Intent(context, MainActivity::class.java)
+        fun createIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

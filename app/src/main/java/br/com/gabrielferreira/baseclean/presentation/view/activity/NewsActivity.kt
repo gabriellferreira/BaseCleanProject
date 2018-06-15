@@ -24,8 +24,8 @@ class NewsActivity : BaseActivity<NewsContract.Presenter, NewsContract.View>(),
     private var newsClicksDisposable: Disposable? = null
 
     override fun createPresenter(): NewsContract.Presenter {
-        AppApplication.applicationComponent.inject(this)
-        return AppApplication.applicationComponent.newsPresenter()
+        getControllerComponent().inject(this)
+        return getControllerComponent().newsPresenter()
     }
 
     companion object {

@@ -3,12 +3,17 @@ package br.com.gabrielferreira.baseclean.presentation.view.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import br.com.gabrielferreira.baseclean.presentation.internal.di.AppApplication
+import br.com.gabrielferreira.baseclean.presentation.internal.di.ControllerComponent
+import br.com.gabrielferreira.baseclean.presentation.internal.di.ControllerModule
 import br.com.gabrielferreira.baseclean.presentation.util.extension.hide
 import br.com.gabrielferreira.baseclean.presentation.util.extension.show
 import br.com.gabrielferreira.baseclean.presentation.view.BaseContract
 import kotlinx.android.synthetic.main.include_toolbar.*
 
 abstract class BaseActivity<T, in V> : AppCompatActivity(), BaseContract.View where T : BaseContract.Presenter<V>, V : BaseContract.View {
+
+    private var mControllerComponent: ControllerComponent? = null
 
     protected var presenter: T? = null
         set(value) {
@@ -18,7 +23,6 @@ abstract class BaseActivity<T, in V> : AppCompatActivity(), BaseContract.View wh
         }
 
     protected abstract fun createPresenter(): T
-
 
     @Suppress("UNCHECKED_CAST", "TooGenericExceptionThrown")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,5 +62,13 @@ abstract class BaseActivity<T, in V> : AppCompatActivity(), BaseContract.View wh
                 toolbar.title = ""
             }
         }
+    }
+
+    protected fun getControllerComponent(): ControllerComponent {
+        if (mControllerComponent == null) {
+            mControllerComponent = (application as AppApplication).getApplicationComponent()
+                    .newControllerComponent(ControllerModule(this))
+        }
+        return mControllerComponent!!
     }
 }
