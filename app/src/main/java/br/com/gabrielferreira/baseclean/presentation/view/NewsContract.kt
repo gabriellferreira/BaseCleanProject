@@ -1,6 +1,6 @@
 package br.com.gabrielferreira.baseclean.presentation.view
 
-import br.com.gabrielferreira.baseclean.presentation.model.NewsViewModel
+import br.com.gabrielferreira.baseclean.domain.model.News
 
 interface NewsContract {
 
@@ -21,7 +21,7 @@ interface NewsContract {
 
         fun onRefreshFinished()
 
-        fun addNews(news: NewsViewModel)
+        fun addNews(news: News)
 
         fun redirectWeb(url: String)
     }
@@ -35,8 +35,6 @@ interface NewsContract {
 
         fun onLoadError()
 
-        fun onNewsReceived(news: NewsViewModel)
-
-        fun onNewsClicked(news: NewsViewModel)
+        fun onNewsClicked(news: News)
     }
 }

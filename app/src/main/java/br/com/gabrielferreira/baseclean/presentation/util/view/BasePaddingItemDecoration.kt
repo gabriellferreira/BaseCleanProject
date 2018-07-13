@@ -15,7 +15,7 @@ open class BasePaddingItemDecoration(@DimenRes offset: Int,
 
     override fun getItemOffsets(outRect: Rect, view: View,
                                 parent: RecyclerView,
-                                state: RecyclerView.State?) {
+                                state: RecyclerView.State) {
 
         super.getItemOffsets(outRect, view, parent, state)
 

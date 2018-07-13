@@ -7,8 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import br.com.gabrielferreira.baseclean.R
-import br.com.gabrielferreira.baseclean.presentation.internal.di.AppApplication
-import br.com.gabrielferreira.baseclean.presentation.model.NewsViewModel
+import br.com.gabrielferreira.baseclean.domain.model.News
 import br.com.gabrielferreira.baseclean.presentation.util.extension.hide
 import br.com.gabrielferreira.baseclean.presentation.util.extension.show
 import br.com.gabrielferreira.baseclean.presentation.util.view.BasePaddingItemDecoration
@@ -63,7 +62,7 @@ class NewsActivity : BaseActivity<NewsContract.Presenter, NewsContract.View>(),
         }
     }
 
-    override fun addNews(news: NewsViewModel) {
+    override fun addNews(news: News) {
         newsListAdapter.add(news)
     }
 

@@ -4,7 +4,7 @@ import br.com.gabrielferreira.baseclean.data.model.NewsData
 import br.com.gabrielferreira.baseclean.domain.model.News
 import javax.inject.Inject
 
-class NewsDomainMapper @Inject constructor() {
+class NewsMapper @Inject constructor() {
 
     //TODO - map properly media URL
     fun map(newsData: NewsData) =

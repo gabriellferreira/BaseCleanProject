@@ -6,16 +6,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import br.com.gabrielferreira.baseclean.R
-import br.com.gabrielferreira.baseclean.presentation.model.NewsViewModel
+import br.com.gabrielferreira.baseclean.domain.model.News
 import br.com.gabrielferreira.baseclean.presentation.util.extension.inflate
 import br.com.gabrielferreira.baseclean.presentation.util.extension.loadCenterCrop
 import io.reactivex.subjects.PublishSubject
 
 @Suppress("unused")
-class NewsAdapter(private var data: MutableList<NewsViewModel> = mutableListOf())
+class NewsAdapter(private var data: MutableList<News> = mutableListOf())
     : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    val onItemClickSubject: PublishSubject<NewsViewModel> = PublishSubject.create<NewsViewModel>()
+    val onItemClickSubject: PublishSubject<News> = PublishSubject.create<News>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
             ViewHolder(parent.inflate(R.layout.item_news_cell))
@@ -32,7 +32,7 @@ class NewsAdapter(private var data: MutableList<NewsViewModel> = mutableListOf()
         private val text: TextView = view.findViewById(R.id.news_cell_text)
         private val date: TextView = view.findViewById(R.id.news_cell_date)
 
-        internal fun bind(model: NewsViewModel) {
+        internal fun bind(model: News) {
             view.setOnClickListener { onItemClickSubject.onNext(model) }
             thumbnail.loadCenterCrop(model.mediaUrl)
             text.text = model.title
@@ -40,7 +40,7 @@ class NewsAdapter(private var data: MutableList<NewsViewModel> = mutableListOf()
         }
     }
 
-    fun add(item: NewsViewModel) {
+    fun add(item: News) {
         this.data.add(item)
         notifyItemInserted(data.indexOf(item))
     }

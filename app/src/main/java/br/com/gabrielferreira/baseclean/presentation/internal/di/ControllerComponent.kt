@@ -1,7 +1,7 @@
 package br.com.gabrielferreira.baseclean.presentation.internal.di
 
 import br.com.gabrielferreira.baseclean.presentation.presenter.MainPresenter
-import br.com.gabrielferreira.baseclean.presentation.presenter.NewsPresenter
+import br.com.gabrielferreira.baseclean.presentation.presenter.NewsListPresenter
 import br.com.gabrielferreira.baseclean.presentation.presenter.SplashPresenter
 import br.com.gabrielferreira.baseclean.presentation.view.activity.MainActivity
 import br.com.gabrielferreira.baseclean.presentation.view.activity.NewsActivity
@@ -21,7 +21,7 @@ interface ControllerComponent {
 
     fun mainPresenter(): MainPresenter
 
-    fun newsPresenter(): NewsPresenter
+    fun newsPresenter(): NewsListPresenter
 
     // View
     fun inject(appApplication: SplashActivity)

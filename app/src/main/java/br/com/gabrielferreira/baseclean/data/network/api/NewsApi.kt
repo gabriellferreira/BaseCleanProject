@@ -2,7 +2,7 @@ package br.com.gabrielferreira.baseclean.data.network.api
 
 import br.com.gabrielferreira.baseclean.data.model.NewsListData
 import br.com.gabrielferreira.baseclean.data.network.service.NewsService
-import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class NewsApi @Inject constructor() : BaseApi() {
@@ -14,5 +14,5 @@ class NewsApi @Inject constructor() : BaseApi() {
         newsService = retrofit.create(NewsService::class.java)
     }
 
-    fun getLatestNews(): Observable<NewsListData> = newsService.getLatestNews()
+    fun getLatestNews(): Single<NewsListData> = newsService.getLatestNews()
 }
