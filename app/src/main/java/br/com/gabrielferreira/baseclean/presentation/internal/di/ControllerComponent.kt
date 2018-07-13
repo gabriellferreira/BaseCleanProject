@@ -1,8 +1,8 @@
 package br.com.gabrielferreira.baseclean.presentation.internal.di
 
-import br.com.gabrielferreira.baseclean.presentation.presenter.MainPresenter
-import br.com.gabrielferreira.baseclean.presentation.presenter.NewsListPresenter
-import br.com.gabrielferreira.baseclean.presentation.presenter.SplashPresenter
+import br.com.gabrielferreira.baseclean.presentation.view.presenter.MainPresenter
+import br.com.gabrielferreira.baseclean.presentation.view.presenter.NewsListPresenter
+import br.com.gabrielferreira.baseclean.presentation.view.presenter.SplashPresenter
 import br.com.gabrielferreira.baseclean.presentation.view.activity.MainActivity
 import br.com.gabrielferreira.baseclean.presentation.view.activity.NewsActivity
 import br.com.gabrielferreira.baseclean.presentation.view.activity.SplashActivity

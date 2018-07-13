@@ -1,8 +1,8 @@
-package br.com.gabrielferreira.baseclean.presentation.presenter
+package br.com.gabrielferreira.baseclean.presentation.view.presenter
 
 import br.com.gabrielferreira.baseclean.domain.model.News
 import br.com.gabrielferreira.baseclean.domain.usecase.NewsListUseCase
-import br.com.gabrielferreira.baseclean.presentation.observable.NewsListViewModelObserver
+import br.com.gabrielferreira.baseclean.presentation.view.observable.NewsListViewModelObserver
 import br.com.gabrielferreira.baseclean.presentation.view.NewsContract
 import javax.inject.Inject
 

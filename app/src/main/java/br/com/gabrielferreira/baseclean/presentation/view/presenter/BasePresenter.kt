@@ -1,4 +1,4 @@
-package br.com.gabrielferreira.baseclean.presentation.presenter
+package br.com.gabrielferreira.baseclean.presentation.view.presenter
 
 import android.support.annotation.CallSuper
 import br.com.gabrielferreira.baseclean.presentation.view.BaseContract

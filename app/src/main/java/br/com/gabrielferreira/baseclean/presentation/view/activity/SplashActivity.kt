@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import br.com.gabrielferreira.baseclean.R
-import br.com.gabrielferreira.baseclean.presentation.internal.di.AppApplication
 import br.com.gabrielferreira.baseclean.presentation.view.SplashContract
 
 class SplashActivity : BaseActivity<SplashContract.Presenter, SplashContract.View>(),

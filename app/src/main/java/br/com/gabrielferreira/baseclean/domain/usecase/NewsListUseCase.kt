@@ -1,12 +1,9 @@
 package br.com.gabrielferreira.baseclean.domain.usecase
 
 import br.com.gabrielferreira.baseclean.domain.repository.NewsRepository
-import br.com.gabrielferreira.baseclean.presentation.model.NewsListViewModel
-import br.com.gabrielferreira.baseclean.presentation.observable.NewsListViewModelObserver
-import io.reactivex.Observable
+import br.com.gabrielferreira.baseclean.presentation.view.model.NewsListViewModel
+import br.com.gabrielferreira.baseclean.presentation.view.observable.NewsListViewModelObserver
 import io.reactivex.Single
-import io.reactivex.SingleSource
-import java.util.*
 import javax.inject.Inject
 
 class NewsListUseCase @Inject constructor(private val newsRepository: NewsRepository) : BaseUseCase() {

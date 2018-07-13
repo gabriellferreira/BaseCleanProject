@@ -9,7 +9,7 @@
 -keep class  br.com.gabrielferreira.baseclean.domain.model.** { *; }
 
 ### PRESENTATION MODELS ###
--keep class  br.com.gabrielferreira.baseclean.presentation.model.** { *; }
+-keep class  br.com.gabrielferreira.baseclean.presentation.view.model.** { *; }
 
 ### ENUMS ###
 -keepclassmembers enum * {

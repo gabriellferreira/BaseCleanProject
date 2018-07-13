@@ -1,4 +1,4 @@
-package br.com.gabrielferreira.baseclean.presentation.model
+package br.com.gabrielferreira.baseclean.presentation.view.model
 
 import br.com.gabrielferreira.baseclean.domain.model.News
 

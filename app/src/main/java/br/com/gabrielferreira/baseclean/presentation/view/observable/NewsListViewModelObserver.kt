@@ -1,7 +1,7 @@
-package br.com.gabrielferreira.baseclean.presentation.observable
+package br.com.gabrielferreira.baseclean.presentation.view.observable
 
 import android.util.Log
-import br.com.gabrielferreira.baseclean.presentation.model.NewsListViewModel
+import br.com.gabrielferreira.baseclean.presentation.view.model.NewsListViewModel
 import br.com.gabrielferreira.baseclean.presentation.util.extension.TAG
 import br.com.gabrielferreira.baseclean.presentation.view.NewsContract
 import io.reactivex.SingleObserver
