@@ -1,6 +1,9 @@
 package br.com.gabrielferreira.baseclean.presentation.internal.di
 
 import android.app.Application
+import br.com.gabrielferreira.baseclean.BuildConfig
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
 
 open class AppApplication : Application() {
 
@@ -11,6 +14,7 @@ open class AppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initInjector()
+        initFabric()
     }
 
     private fun initInjector() {
@@ -21,5 +25,11 @@ open class AppApplication : Application() {
 
     fun getApplicationComponent(): AppComponent {
         return applicationComponent
+    }
+
+    private fun initFabric() {
+        if (!BuildConfig.DEBUG) {
+            Fabric.with(this, Crashlytics())
+        }
     }
 }

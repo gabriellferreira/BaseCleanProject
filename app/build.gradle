@@ -11,6 +11,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -106,7 +107,7 @@ dependencies {
     kapt "com.github.hotchemi:permissionsdispatcher-processor:${permissionDispatcherVersion}"
 
     //Fabric
-    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true
         exclude group: "com.android.support", module: "support-annotations"
     }
