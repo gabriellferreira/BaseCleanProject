@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BaseCleanProject</string>
+
+    <!-- include_card_error -->
+    <string name="card_error_message">Infelizmente não foi possível acessar o conteúdo.\nVerifique se o seu dispositivo está conectado.</string>
+    <string name="card_error_tip">Deslize para baixo para recarregar</string>
+    <string name="main_latest_news">Check Latest News</string>
+    <string name="news_title">Ultimas notícias</string>
+</resources>

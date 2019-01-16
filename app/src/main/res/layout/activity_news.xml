@@ -1,0 +1,46 @@
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/news_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/news_toolbar"
+            layout="@layout/include_toolbar" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/news_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/news_toolbar"
+            android:padding="16dp"
+            android:clipToPadding="false"/>
+
+        <FrameLayout
+            android:id="@+id/news_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/news_toolbar"
+            android:layout_centerInParent="true"
+            android:background="@color/white"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <include
+            android:id="@+id/news_error_card"
+            layout="@layout/include_card_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/news_toolbar"
+            android:visibility="gone" />
+    </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
