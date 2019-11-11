@@ -135,7 +135,7 @@ Temporary Items
 .apdisk
 
 
-### Crashlytics ###
-#Crashlytics
+### Fabric ###
 crashlytics-build.properties
 com_crashlytics_export_strings.xml
+fabric.properties
