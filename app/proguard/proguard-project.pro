@@ -3,13 +3,13 @@
 -keep class android.support.v4.content.ContextCompat { *; }
 
 ### DATA MODELS ###
--keep class  br.com.gabrielferreira.baseclean.data.model.** { *; }
+-keep class  br.com.gabriellferreira.baseclean.data.model.** { *; }
 
 ### DOMAIN MODELS ###
--keep class  br.com.gabrielferreira.baseclean.domain.model.** { *; }
+-keep class  br.com.gabriellferreira.baseclean.domain.model.** { *; }
 
 ### PRESENTATION MODELS ###
--keep class  br.com.gabrielferreira.baseclean.presentation.view.model.** { *; }
+-keep class  br.com.gabriellferreira.baseclean.presentation.view.model.** { *; }
 
 ### ENUMS ###
 -keepclassmembers enum * {
