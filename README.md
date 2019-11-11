@@ -5,7 +5,7 @@
 
 * minSdkVersion: 21
 
-* targetSdkVersion: 27
+* targetSdkVersion: 29
 
 ## Dependencies:
 * Kotlin
