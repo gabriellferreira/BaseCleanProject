@@ -27,10 +27,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".presentation.view.activity.NewsActivity"
             android:screenOrientation="portrait"/>
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="ef07db1163c9b4f377158e6ca0aed055aedbdab7" />
     </application>
 </manifest>
 
