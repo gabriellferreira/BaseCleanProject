@@ -87,3 +87,7 @@ dependencies {
     // Rounded ImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
 }
+
+tasks.whenTaskAdded { task ->
+    task.dependsOn rootProject.getTasksByName("detektCheck", false).first()
+}

@@ -33,7 +33,6 @@ class MainActivity : BaseActivity<MainContract.Presenter, MainContract.View>(),
     }
 
     override fun redirectLatestNews() {
-        val x = 130983 * 123
         startActivity(NewsActivity.createIntent(this))
     }
 }
