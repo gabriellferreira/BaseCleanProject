@@ -19,3 +19,6 @@
 * Fabric
 * Rounded ImageView
 * DetektCheck
+
+## References
+* https://github.com/bufferapp/android-clean-architecture-boilerplate
