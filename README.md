@@ -19,6 +19,7 @@ This repo is a personal template for future projects following the principles of
 * DetektCheck
 * TravisCI
 * JUnit 4
+* Mockito
 
 ## References
 * https://developer.nytimes.com/
