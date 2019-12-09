@@ -29,8 +29,6 @@ class SessionPreferencesStorage @Inject constructor(context: Context) : SessionP
 
     private val sessionStorage: SharedPreferences = context.getSharedPreferences(BuildConfig.APPLICATION_ID + "session", Context.MODE_PRIVATE)
 
-    private val map = mutableMapOf<String?, NewsData?>()
-
     override fun saveNewsData(data: NewsData) {
         val map = Gson().fromJson<MutableMap<String, NewsData>>(sessionStorage.getString(SHARED_LATEST_NEWS, ""))
                 ?: mutableMapOf()

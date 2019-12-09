@@ -39,7 +39,6 @@ class NewsMapper @Inject constructor() {
         }
     }
 
-    //Disclaimer
     private fun getMediaUrl(newsData: NewsData) =
             newsData.media
                     ?.first()

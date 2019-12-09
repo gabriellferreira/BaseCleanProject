@@ -15,12 +15,12 @@ import javax.inject.Inject
 open class BaseApi @Inject constructor() {
 
     companion object {
-        private val API_TIMEOUT = 30
+        private const val API_TIMEOUT_SECONDS = 30
         //TODO extract to external buildconfig
         private val API_KEY = "OBDqH5MnfSyCxkGbJYa1l9S9aRflJZfb"
     }
 
-    fun build(timeout: Int = API_TIMEOUT): Retrofit {
+    fun build(timeout: Int = API_TIMEOUT_SECONDS): Retrofit {
 
         //TODO extract to external buildconfig
         val baseUrl = "https://api.nytimes.com/"

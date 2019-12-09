@@ -21,5 +21,4 @@ class NewsDataRepository @Inject constructor(private val newsApi: NewsApi,
                     storage.saveNewsData(it)
                 }
     }
-
 }

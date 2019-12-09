@@ -14,13 +14,10 @@ import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-import org.robolectric.RobolectricTestRunner
 import javax.inject.Inject
 
-@RunWith(RobolectricTestRunner::class)
 class NewsListPresenterTest {
 
     @get:Rule
@@ -87,7 +84,7 @@ class NewsListPresenterTest {
     }
 
     @Test
-    fun loadMostPopularNews_emptyData_emptyValidScenario(){
+    fun loadMostPopularNews_emptyData_emptyValidScenario() {
         emptySuccessScenario()
         presenter.loadMostPopularNews()
         verify(view, atLeastOnce()).hideError()

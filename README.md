@@ -2,6 +2,8 @@
 
 # BaseCleanProject
 
+This repo is a personal template for future projects following the principles of the clean architecture. It integrates the NY Times api, and display the most popular news according to the selected time period. It still under development...
+
 * minSdkVersion: 23
 * targetSdkVersion: 29
 
@@ -16,6 +18,9 @@
 * Rounded ImageView
 * DetektCheck
 * TravisCI
+* JUnit 4
 
 ## References
+* https://developer.nytimes.com/
 * https://github.com/bufferapp/android-clean-architecture-boilerplate
+* https://medium.com/@fabioCollini/testing-asynchronous-rxjava-code-using-mockito-8ad831a16877
