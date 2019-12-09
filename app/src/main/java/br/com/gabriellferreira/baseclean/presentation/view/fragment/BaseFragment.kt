@@ -1,14 +1,16 @@
 package br.com.gabriellferreira.baseclean.presentation.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
-import br.com.gabriellferreira.baseclean.presentation.internal.di.AppApplication
-import br.com.gabriellferreira.baseclean.presentation.internal.di.ControllerComponent
-import br.com.gabriellferreira.baseclean.presentation.internal.di.ControllerModule
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import br.com.gabriellferreira.baseclean.presentation.di.AppApplication
+import br.com.gabriellferreira.baseclean.presentation.di.ControllerComponent
+import br.com.gabriellferreira.baseclean.presentation.di.ControllerModule
 import br.com.gabriellferreira.baseclean.presentation.view.BaseContract
+import br.com.gabriellferreira.baseclean.presentation.view.activity.BaseActivity
 
+@Suppress("unused")
 abstract class BaseFragment<T, in V> : Fragment(),
         BaseContract.View where T : BaseContract.Presenter<V>, V : BaseContract.View {
 
@@ -54,5 +56,11 @@ abstract class BaseFragment<T, in V> : Fragment(),
                     .newControllerComponent(ControllerModule(activity as AppCompatActivity))
         }
         return mControllerComponent!!
+    }
+
+    override fun showToast(msg: String) {
+        if (activity is BaseActivity<*, *>) {
+            (activity as BaseActivity<*, *>).showToast(msg)
+        }
     }
 }

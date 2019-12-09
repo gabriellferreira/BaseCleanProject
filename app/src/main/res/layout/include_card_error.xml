@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:fontFamily="sans-serif"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="6sp"
         android:text="@string/card_error_message"
@@ -21,31 +20,20 @@
         android:id="@+id/wifi_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_dnd_forwardslash" />
+        android:contentDescription="@null"
+        android:src="@drawable/ic_wifi_signal" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_loop"
-            android:layout_margin="8dp"
-            android:tint="@android:color/black" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:gravity="center_horizontal"
-            android:text="@string/card_error_tip"
-            android:textSize="14sp"
-            android:textStyle="normal" />
-    </LinearLayout>
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:drawableStart="@drawable/ic_loop"
+        android:drawablePadding="8dp"
+        android:drawableTint="@android:color/black"
+        android:gravity="center_horizontal"
+        android:text="@string/card_error_tip"
+        android:textSize="14sp"
+        android:textStyle="normal" />
 </LinearLayout>

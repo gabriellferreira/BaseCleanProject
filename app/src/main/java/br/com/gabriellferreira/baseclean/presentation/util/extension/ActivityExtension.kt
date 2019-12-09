@@ -1,4 +1,5 @@
 @file:Suppress("unused")
+
 package br.com.gabriellferreira.baseclean.presentation.util.extension
 
 import androidx.appcompat.app.AppCompatActivity

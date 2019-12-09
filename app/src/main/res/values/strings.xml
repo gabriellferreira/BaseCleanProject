@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">BaseCleanProject</string>
 
-    <!-- include_card_error -->
-    <string name="card_error_message">Infelizmente não foi possível acessar o conteúdo.\nVerifique se o seu dispositivo está conectado.</string>
-    <string name="card_error_tip">Deslize para baixo para recarregar</string>
+    <string name="card_error_message">Unfortunately, we were unable to access the content. Make sure your device is connected.</string>
+    <string name="card_empty_message">Unfortunately, at this moment no content was found. Please check again later!</string>
+    <string name="card_error_tip">Swipe down to reload</string>
     <string name="main_latest_news">Check Latest News</string>
-    <string name="news_title">Ultimas notícias</string>
+    <string name="news_title">NY Times Most Popular News</string>
+    <string name="menu_time_period">Time period</string>
+    <string name="menu_time_period_1_day">1 day</string>
+    <string name="menu_time_period_7_days">7 days</string>
+    <string name="menu_time_period_30_days">30 days</string>
 </resources>

@@ -35,7 +35,7 @@ abstract class Event {
         }
 
         enum class Reachability {
-            WIFI, OFFLINE, WWAN
+            WIFI, OFFLINE, WWAN, ETHERNET
         }
 
         enum class Origin {
@@ -54,6 +54,9 @@ abstract class Event {
                 }
                 WIFI -> {
                     Params.Reachability.WIFI
+                }
+                ETHERNET -> {
+                    Params.Reachability.ETHERNET
                 }
                 NO_CONNECTION -> {
                     Params.Reachability.OFFLINE

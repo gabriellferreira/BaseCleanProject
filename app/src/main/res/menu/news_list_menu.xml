@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/menu_time_period"
+        android:icon="@drawable/ic_time_period"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group
+                android:id="@+id/group_time_period"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_show_1_day"
+                    android:checked="true"
+                    android:title="@string/menu_time_period_1_day"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/action_show_7_days"
+                    android:title="@string/menu_time_period_7_days"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/action_show_30_days"
+                    android:title="@string/menu_time_period_30_days"
+                    app:showAsAction="never" />
+            </group>
+        </menu>
+    </item>
+</menu>

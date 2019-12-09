@@ -1,19 +1,18 @@
 package br.com.gabriellferreira.baseclean.domain.usecase
 
+import br.com.gabriellferreira.baseclean.data.mapper.NewsMapper
+import br.com.gabriellferreira.baseclean.domain.model.News
 import br.com.gabriellferreira.baseclean.domain.repository.NewsRepository
-import br.com.gabriellferreira.baseclean.presentation.view.model.NewsListViewModel
-import br.com.gabriellferreira.baseclean.presentation.view.observable.NewsListViewModelObserver
-import io.reactivex.Single
+import io.reactivex.Observer
 import javax.inject.Inject
 
-class NewsListUseCase @Inject constructor(private val newsRepository: NewsRepository) : BaseUseCase() {
+class NewsListUseCase @Inject constructor(private val newsRepository: NewsRepository,
+                                          private val newsMapper: NewsMapper) : BaseUseCase() {
 
-    fun fetchLatestNews(section: String, timePeriod: Int, observer: NewsListViewModelObserver) {
-        newsRepository.fetchLatestNews()
-                .flatMap { newsList ->
-                    Single.create<NewsListViewModel> {
-                        NewsListViewModel(newsList = newsList)
-                    }
+    fun fetchMostPopularNews(timePeriod: Int, observer: Observer<News>) {
+        newsRepository.fetchMostPopularNews(timePeriod)
+                .map {
+                    newsMapper.map(it)
                 }
                 .subscribeOn(subscribeScheduler)
                 .observeOn(observeScheduler)

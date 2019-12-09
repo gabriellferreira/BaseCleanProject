@@ -1,12 +1,13 @@
 @file:Suppress("unused")
+
 package br.com.gabriellferreira.baseclean.presentation.util.extension
 
-import androidx.annotation.StringRes
-import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.StringRes
 import br.com.gabriellferreira.baseclean.R
 import br.com.gabriellferreira.baseclean.presentation.util.extension.ViewExtension.Companion.SNACK_BAR_MAX_LINES
+import com.google.android.material.snackbar.Snackbar
 
 class ViewExtension {
     companion object {

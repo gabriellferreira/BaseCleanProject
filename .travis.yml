@@ -1,0 +1,42 @@
+language: android
+dist: trusty
+jdk: oraclejdk8
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-29.0.0
+    - android-29
+    - extra-google-m2repository
+    - extra-android-m2repository
+  licenses:
+    - android-sdk-preview-license-.+
+    - android-sdk-license-.+
+    - google-gdk-license-.+
+
+script:
+  - "yes | sdkmanager --update"
+  - "yes | sdkmanager --licenses"
+  - "./gradlew check --stacktrace"
+
+#deploy:
+#  - provider: script
+#    script: "./gradlew assembleStageDeploy"
+#    on:
+#      branch: master
+#
+#  - provider: script
+#    script: "./gradlew assembleReleaseDeploy"
+#    on:
+#      tags: true

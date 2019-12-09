@@ -133,9 +133,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-
-### Fabric ###
-crashlytics-build.properties
-com_crashlytics_export_strings.xml
-fabric.properties

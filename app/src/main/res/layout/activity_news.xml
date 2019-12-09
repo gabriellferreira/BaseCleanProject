@@ -1,46 +1,60 @@
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/news_swipe"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <include
+        android:id="@+id/news_toolbar"
+        layout="@layout/include_toolbar" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/news_swipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/news_toolbar"
+        android:background="@color/white">
 
-        <include
-            android:id="@+id/news_toolbar"
-            layout="@layout/include_toolbar" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/news_recycler"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/news_toolbar"
-            android:padding="16dp"
-            android:clipToPadding="false"/>
+            android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/news_progress"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/news_toolbar"
-            android:layout_centerInParent="true"
-            android:background="@color/white"
-            android:visibility="gone">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/news_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:padding="16dp"
+                android:scrollbars="none" />
 
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/news_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:visibility="gone">
 
-        <include
-            android:id="@+id/news_error_card"
-            layout="@layout/include_card_error"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/news_toolbar"
-            android:visibility="gone" />
-    </RelativeLayout>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+            <include
+                android:id="@+id/news_error_card"
+                layout="@layout/include_card_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/news_empty_card"
+                layout="@layout/include_card_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</RelativeLayout>
+
+

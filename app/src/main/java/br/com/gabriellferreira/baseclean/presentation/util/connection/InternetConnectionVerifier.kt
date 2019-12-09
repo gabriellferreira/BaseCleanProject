@@ -9,6 +9,7 @@ interface InternetConnectionVerifier {
     enum class InternetConnectionType {
         MOBILE_DATA,
         WIFI,
+        ETHERNET,
         NO_CONNECTION
     }
 }

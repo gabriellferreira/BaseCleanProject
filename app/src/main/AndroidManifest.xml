@@ -1,32 +1,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.gabriellferreira.baseclean">
 
-    <!-- Basic Permission-->
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- Context Extension -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:allowBackup="true"
+        android:name="br.com.gabriellferreira.baseclean.presentation.di.AppApplication"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".presentation.internal.di.AppApplication">
+        tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".presentation.view.activity.SplashActivity"
+        <activity
+            android:name=".presentation.view.activity.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.view.activity.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".presentation.view.activity.NewsActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.view.activity.NewsActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>
 

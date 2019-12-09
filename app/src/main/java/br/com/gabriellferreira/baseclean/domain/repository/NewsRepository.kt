@@ -1,8 +1,8 @@
 package br.com.gabriellferreira.baseclean.domain.repository
 
-import br.com.gabriellferreira.baseclean.domain.model.News
-import io.reactivex.Single
+import br.com.gabriellferreira.baseclean.data.model.NewsData
+import io.reactivex.Observable
 
 interface NewsRepository {
-    fun fetchLatestNews(): Single<List<News>>
+    fun fetchMostPopularNews(period: Int): Observable<NewsData>
 }

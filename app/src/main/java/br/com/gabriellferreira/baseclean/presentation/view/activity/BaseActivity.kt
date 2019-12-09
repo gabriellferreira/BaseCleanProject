@@ -1,11 +1,12 @@
 package br.com.gabriellferreira.baseclean.presentation.view.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
-import br.com.gabriellferreira.baseclean.presentation.internal.di.AppApplication
-import br.com.gabriellferreira.baseclean.presentation.internal.di.ControllerComponent
-import br.com.gabriellferreira.baseclean.presentation.internal.di.ControllerModule
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import br.com.gabriellferreira.baseclean.presentation.di.AppApplication
+import br.com.gabriellferreira.baseclean.presentation.di.ControllerComponent
+import br.com.gabriellferreira.baseclean.presentation.di.ControllerModule
 import br.com.gabriellferreira.baseclean.presentation.util.extension.hide
 import br.com.gabriellferreira.baseclean.presentation.util.extension.show
 import br.com.gabriellferreira.baseclean.presentation.view.BaseContract
@@ -70,5 +71,9 @@ abstract class BaseActivity<T, in V> : AppCompatActivity(), BaseContract.View wh
                     .newControllerComponent(ControllerModule(this))
         }
         return mControllerComponent!!
+    }
+
+    override fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }

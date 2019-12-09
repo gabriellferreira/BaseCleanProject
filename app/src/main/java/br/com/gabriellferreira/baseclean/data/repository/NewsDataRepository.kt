@@ -1,15 +1,25 @@
 package br.com.gabriellferreira.baseclean.data.repository
 
-import br.com.gabriellferreira.baseclean.data.mapper.NewsMapper
+import br.com.gabriellferreira.baseclean.data.model.NewsData
 import br.com.gabriellferreira.baseclean.data.network.api.NewsApi
-import br.com.gabriellferreira.baseclean.domain.model.News
+import br.com.gabriellferreira.baseclean.data.storage.SessionPreferences
 import br.com.gabriellferreira.baseclean.domain.repository.NewsRepository
-import io.reactivex.Single
+import io.reactivex.Observable
 import javax.inject.Inject
 
 class NewsDataRepository @Inject constructor(private val newsApi: NewsApi,
-                                             private val newsMapper: NewsMapper) : NewsRepository {
+                                             private val storage: SessionPreferences) : NewsRepository {
 
-    override fun fetchLatestNews(): Single<List<News>> =
-            newsApi.getLatestNews().map { it.results?.map { newsMapper.map(it) } }
+    override fun fetchMostPopularNews(period: Int): Observable<NewsData> {
+        val news = newsApi.getMostPopularNews(period)
+        val load = storage.loadNewsData()
+        return Observable.merge<NewsData>(news, load)
+                .distinct {
+                    it.id
+                }
+                .doOnNext {
+                    storage.saveNewsData(it)
+                }
+    }
+
 }

@@ -1,15 +1,17 @@
 package br.com.gabriellferreira.baseclean.presentation.view.adapter
 
-import androidx.recyclerview.widget.RecyclerView
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import br.com.gabriellferreira.baseclean.R
 import br.com.gabriellferreira.baseclean.domain.model.News
 import br.com.gabriellferreira.baseclean.presentation.util.extension.inflate
 import br.com.gabriellferreira.baseclean.presentation.util.extension.loadCenterCrop
 import io.reactivex.subjects.PublishSubject
+import kotlinx.android.synthetic.main.item_news_cell.view.*
 
 @Suppress("unused")
 class NewsAdapter(private var data: MutableList<News> = mutableListOf())
@@ -21,22 +23,20 @@ class NewsAdapter(private var data: MutableList<News> = mutableListOf())
             ViewHolder(parent.inflate(R.layout.item_news_cell))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position], position)
     }
 
     override fun getItemCount(): Int = data.size
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-        private val thumbnail: ImageView = view.findViewById(R.id.news_cell_thumbnail)
-        private val text: TextView = view.findViewById(R.id.news_cell_text)
-        private val date: TextView = view.findViewById(R.id.news_cell_date)
-
-        internal fun bind(model: News) {
+        @SuppressLint("SetTextI18n")
+        internal fun bind(model: News, position: Int) {
             view.setOnClickListener { onItemClickSubject.onNext(model) }
-            thumbnail.loadCenterCrop(model.mediaUrl)
-            text.text = model.title
-            date.text = model.publishedDate
+            view.item_news_thumbnail?.loadCenterCrop(model.thumbnailUrl)
+            view.item_news_title?.text = model.title
+            view.item_news_abstract?.text = model.abstract
+            view.item_news_ranking?.text = "#${position+1}"
         }
     }
 
